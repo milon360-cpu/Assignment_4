@@ -28,7 +28,7 @@
 
     <!--Booking Section-->
     <main class="main-content container">
-        <div class="booking-form">
+        <div class="booking-form" id="flight">
             <h3>Booking Flights</h3>
             <div class="input-group">
                 <label for="">Flying From</label>
@@ -41,7 +41,7 @@
             <div class="inputs">
                 <div class="input-group">
                     <label" for="">Departure</label>
-                    <input class="inp-style" type="date" name="">
+                        <input class="inp-style" type="date" name="">
                 </div>
                 <div class="input-group">
                     <label for="">Return</label>
@@ -51,20 +51,24 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">First Class ($150)</label>
-                    <input class="inp-style inp-width" type="number" name="">
+                    <input class="inp-style inp-width" type="number" name="" value='0' id="firstTicket">
                 </div>
                 <div class="plus-minus-btn">
-                    <p>+ -</p>
+                    <button class="plus-minus-btn" style="box-shadow: 1px 1px 2px gray;" id="firstPlus">+</button>
+                    <button class="plus-minus-btn" style="box-shadow: 1px 1px 2px gray;" id="firstMinus">-</button>
+
                 </div>
             </div>
-            
+
             <div class="input-group f-class">
                 <div>
                     <label for="">Economy ($100)</label>
-                    <input class="inp-style inp-width" type="number" name="">
+                    <input class="inp-style inp-width" type="number" name="" id="ticketCount" value='0'>
+
                 </div>
                 <div class="plus-minus-btn">
-                    <p> <span>+</span> <span>-</span> </p>
+                    <button class="plus-minus-btn" style="box-shadow: 1px 1px 2px gray;" id="plus">+</button>
+                    <button class="plus-minus-btn" style="box-shadow: 1px 1px 2px gray;" id="minus">-</button>
                 </div>
             </div>
             <div class="calculations">
@@ -73,7 +77,7 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p>$500</p>
+                        <p>$ <span id="subtotal">0</span></p>
                     </div>
                 </div>
 
@@ -82,7 +86,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p>$50</p>
+                        <p>$ <span id="tax">0</span></p>
                     </div>
                 </div>
                 <hr>
@@ -91,20 +95,110 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p>$550</p>
+                        <p>$ <span id="total">0</span></p>
                     </div>
                 </div>
             </div>
-            <button class="btn-style">Book Now</button>
+            <button class="btn-style" id="book">Book Now</button>
         </div>
 
         <div class="booking-content">
             <h1>discover <br> around the world</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias
+                veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise
+                voluptatibus quam</p>
         </div>
-    </section>
+        <div class="usermessage" id="massege">
+            <h1>Congratulations</h1><br>
+            <h4>You booked titcek succesfully </h4><br>
+            <img src="check.png" alt="">
+        </div>
+        </section>
 
-    <!--Thank You-->
+        <!--Thank You-->
+        <script>
+            
+            //  Economy Class
+            document.getElementById('plus').addEventListener('click', function () {            
+                ecoClass(true);
+                calculateTotal();
+            })
+
+            document.getElementById('minus').addEventListener('click', function () {              
+               ecoClass(false);
+               calculateTotal();
+            })
+
+            function ecoClass(isIncrease) 
+            {
+             let ticketCount_ = document.getElementById('ticketCount');
+                let totalTickit = parseInt(ticketCount_.value);
+                if(isIncrease == true)
+                {
+                    document.getElementById('ticketCount').value = totalTickit+1;
+                }
+                if(isIncrease == false && totalTickit>0)
+                {
+                    document.getElementById('ticketCount').value = totalTickit-1;
+                }
+               
+              
+            }
+           
+            // FIrstClass 
+            document.getElementById('firstPlus').addEventListener('click', function () {            
+                firstClass(true);
+                calculateTotal();
+            })
+
+
+            document.getElementById('firstMinus').addEventListener('click', function () {               
+                firstClass(false);
+                calculateTotal();
+            })
+
+            function firstClass(isIncrease)
+            {
+               var ticketCount = document.getElementById('firstTicket');
+               let totalTickit = parseInt(ticketCount.value);
+               if(isIncrease==true)
+               {
+                document.getElementById('firstTicket').value = totalTickit+1;
+               }
+               if(isIncrease==false && totalTickit>0)
+               {
+                document.getElementById('firstTicket').value = totalTickit-1;
+               }
+            }
+
+            //   Total, subTotal, Tax 
+
+              function calculateTotal() {
+                var firstclass = document.getElementById('firstTicket');
+                var firstclassConvert = parseInt(firstclass.value);
+
+                var ecoClass = document.getElementById('ticketCount');
+                var ecoClassConvert = parseInt(ecoClass.value);
+
+                let subtotal = (firstclassConvert * 150) + (ecoClassConvert * 100);
+
+                document.getElementById('subtotal').innerText = subtotal;
+                document.getElementById('tax').innerText = subtotal * 0.10;
+                document.getElementById('total').innerText = (subtotal * 0.10) + subtotal;
+
+            }
+
+            document.getElementById('book').addEventListener('click', function(){
+                
+               var displayMessage = document.getElementById('massege');
+               displayMessage.style.display = 'block';
+               var flight = document.getElementById('flight');
+               flight.style.display = 'none';
+               
+            })
+           
+
+        </script>
 </body>
 
 </html>

@@ -120,3 +120,18 @@ nav ul li a:hover, a.active{
     display: flex;
     justify-content: space-between;
 }
+.usermessage
+{
+    height: 300px;
+    width: 400px;
+    background-color:lightgray;
+    margin-top: 30%;
+    margin-left:-20%;
+    border-radius: 10px;
+    box-shadow: 6px 6px 10px gray;
+    text-align: center;
+    padding-top: 40px;
+    color: rgb(3, 173, 3);
+      display: none;
+    
+}
