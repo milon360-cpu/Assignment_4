@@ -67,8 +67,8 @@
 
                 </div>
                 <div class="plus-minus-btn">
-                    <button class="plus-minus-btn" style="box-shadow: 1px 1px 2px gray;" id="plus">+</button>
-                    <button class="plus-minus-btn" style="box-shadow: 1px 1px 2px gray;" id="minus">-</button>
+                    <button class="plus-minus-btn" style="box-shadow: 1px 1px 2px gray;" id="ecoplus">+</button>
+                    <button class="plus-minus-btn" style="box-shadow: 1px 1px 2px gray;" id="ecominus">-</button>
                 </div>
             </div>
             <div class="calculations">
@@ -119,12 +119,12 @@
         <script>
             
             //  Economy Class
-            document.getElementById('plus').addEventListener('click', function () {            
+            document.getElementById('ecoplus').addEventListener('click', function () {            
                 ecoClass(true);
                 calculateTotal();
             })
 
-            document.getElementById('minus').addEventListener('click', function () {              
+            document.getElementById('ecominus').addEventListener('click', function () {              
                ecoClass(false);
                calculateTotal();
             })
